@@ -1,0 +1,109 @@
+﻿@model MovilidadInteligenteUI.Models.Usuario
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="idUsuario"></label>
+                <input class="form-control" asp-for="idUsuario" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre"></label>
+                <input class="form-control" asp-for="nombre" />
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido1"></label>
+                <input class="form-control" asp-for="apellido1" />
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido2"></label>
+                <input class="form-control" asp-for="apellido2" />
+            </div>
+            <div class="form-group">
+                <label asp-for="correo"></label>
+                <input class="form-control" asp-for="correo" />
+            </div>
+            <div class="form-group">
+                <label asp-for="clave"></label>
+                <input class="form-control" asp-for="clave" />
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono"></label>
+                <input class="form-control" asp-for="telefono" />
+            </div>
+            <div class="form-group">
+                <label asp-for="saldo"></label>
+                <input class="form-control" asp-for="saldo" />
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaCreacion"></label>
+                <input class="form-control" asp-for="fechaCreacion" />
+            </div>
+            <div class="form-group">
+                <label asp-for="rol"></label>
+                <input class="form-control" asp-for="rol" />
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                <input class="form-control" asp-for="estado" />
+            </div>
+            <div class="text-center panel-body">
+                <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+            </div>
+        </form>
+
+        @if (ViewBag.Result == "Success")
+        {
+            <h2>Reservation</h2>
+            <table class="table table-sm table-striped table-bordered m-2">
+                <thead>
+                    <tr>
+                        <th>Identificacion</th>
+                        <th>Nombre</th>
+                        <th>Apellido 1</th>
+                        <th>Apellido 2</th>
+                        <th>Identificacion</th>
+                        <th>Correo</th>
+                        <th>Clave</th>
+                        <th>Telefono</th>
+                        <th>Saldo</th>
+                        <th>Fecha Creacion</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.idUsuario</td>
+                        <td>@Model.nombre</td>
+                        <td>@Model.apellido1</td>
+                        <td>@Model.apellido2</td>
+                        <td>@Model.correo</td>
+                        <td>@Model.clave</td>
+                        <td>@Model.telefono</td>
+                        <td>@Model.saldo</td>
+                        <td>@Model.fechaCreacion</td>
+                        <td>@Model.rol</td>
+                        <td>@Model.estado</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Usuarios">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

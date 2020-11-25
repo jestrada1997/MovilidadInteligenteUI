@@ -1,0 +1,53 @@
+﻿@model MovilidadInteligenteUI.Models.Linea
+
+@{
+    ViewData["Title"] = "Borrar";
+}
+
+<h1>Eliminar</h1>
+
+<h3>Seguro que desea eliminar?</h3>
+<div>
+    <h4>Linea</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idLinea)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.idLinea)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.monto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.monto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.codigoCTP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.codigoCTP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+    </dl>
+
+    <div>
+        @Html.ActionLink("Borrar", "Delete", new { id = Model.idLinea })
+    </div>
+
+    <div>
+        <a asp-action="Lineas">Regresar</a>
+    </div>
+</div>
