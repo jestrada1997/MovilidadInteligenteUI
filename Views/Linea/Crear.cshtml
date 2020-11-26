@@ -4,46 +4,52 @@
     ViewData["Title"] = "Crear";
 }
 
-<h1>Crear</h1>
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
 
-<h4>Linea</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Crear">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(model => model.idLinea)
-            <div class="form-group">
-                <label asp-for="descripcion" class="control-label"></label>
-                <input asp-for="descripcion" class="form-control" />
-                <span asp-validation-for="descripcion" class="text-danger"></span>
+                <h4>Crear Linea</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Crear">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @Html.HiddenFor(model => model.idLinea)
+                            <div class="form-group">
+                                <label asp-for="descripcion" class="control-label"></label>
+                                <input asp-for="descripcion" class="form-control" />
+                                <span asp-validation-for="descripcion" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="monto" class="control-label"></label>
+                                <input asp-for="monto" class="form-control" />
+                                <span asp-validation-for="monto" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="codigoCTP" class="control-label"></label>
+                                <input asp-for="codigoCTP" class="form-control" />
+                                <span asp-validation-for="codigoCTP" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Crear" class="btn btn-primary" />
+                                <a asp-action="Lineas" class="btn btn-primary">Regresar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }
             </div>
-            <div class="form-group">
-                <label asp-for="monto" class="control-label"></label>
-                <input asp-for="monto" class="form-control" />
-                <span asp-validation-for="monto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="codigoCTP" class="control-label"></label>
-                <input asp-for="codigoCTP" class="form-control" />
-                <span asp-validation-for="codigoCTP" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Lineas">Regresar</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    </body>

@@ -4,56 +4,69 @@
     ViewData["Title"] = "Lineas";
 }
 
-<h1>Lineas</h1>
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="row gutters-sm">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Tabla de Lineas</h1>
 
-<p>
-    <a asp-action="Crear">Crear</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.idLinea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.monto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.codigoCTP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.estado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idLinea)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.monto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.codigoCTP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Update", new { id = item.idLinea }) |
-                @Html.ActionLink("Detalles", "GetLinea", new { id = item.idLinea }) |
-                @Html.ActionLink("Eliminar", "Borrar", new { id = item.idLinea }) |
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    <p>
+                        <a asp-action="Crear" class="btn btn-primary">Crear</a>
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idLinea)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.monto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.codigoCTP)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estado)
+                                </th>
+                                <th> Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idLinea)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.monto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.codigoCTP)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.estado)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Update", new { id = item.idLinea }) |
+                                        @Html.ActionLink("Detalles", "GetLinea", new { id = item.idLinea }) |
+                                        @Html.ActionLink("Eliminar", "Borrar", new { id = item.idLinea }) |
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

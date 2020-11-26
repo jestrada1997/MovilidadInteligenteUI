@@ -1,0 +1,56 @@
+﻿@model MovilidadInteligenteUI.Models.Unidad
+
+@{
+    ViewData["Title"] = "Borrar Unidad";
+}
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="row gutters-sm">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Eliminar Unidad</h1>
+
+                    <h3>Seguro que desea eliminar?</h3>
+                    <div>
+                        <h4>Unidad</h4>
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.idUnidad)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.idUnidad)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.descripcion)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.descripcion)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.placa)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.placa)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.estado)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.estado)
+                            </dd>
+                        </dl>
+
+                        <div>
+                            <a class="btn btn-primary" @Html.ActionLink("Borrar", "Delete", new { id = Model.idUnidad })</a>
+                            <a asp-action="Unidades" class="btn btn-primary">Regresar</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

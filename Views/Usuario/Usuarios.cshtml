@@ -1,37 +1,38 @@
 ﻿@model IEnumerable<MovilidadInteligenteUI.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Usuarios";
+    ViewData["Title"] = "Tabla de Usuarios";
 }
 
 <br />
 <body>
     <br />
-    <div class="row gutters-sm">
-        <div class="card">
-            <div class="card-body">
-                <h1>Usuarios</h1>
-                <p>
-                    <a asp-action="Crear">Crear</a>
-                </p>
-                <table class="table">
-                    <thead>
+    <div class="container">
+        <div class="row gutters-sm">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Tabla de Usuarios</h1>
+                    <p>
+                        <a asp-action="Crear" class="btn btn-primary">Crear</a>
+                    </p>
+                    <table class="table">
+                        <thead>
 
-                        <tr>
+                            <tr>
 
-                            <th>
-                                @Html.DisplayNameFor(model => model.idUsuario)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.apellido1)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.apellido2)
-                            </th>
-                            @*<th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idUsuario)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.apellido1)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.apellido2)
+                                </th>
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.correo)
                                 </th>
                                 <th>
@@ -46,33 +47,33 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.fechaCreacion)
                                 </th>*@
-                            <th>
-                                @Html.DisplayNameFor(model => model.rol)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.estado)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.rol)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estado)
+                                </th>
+                                <th> Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idUsuario)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.apellido1)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.apellido2)
-                                </td>
-                                @*<td>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idUsuario)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.apellido1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.apellido2)
+                                    </td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.correo)
                                     </td>
                                     <td>
@@ -87,23 +88,24 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.fechaCreacion)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.rol)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.estado)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Editar", "Update", new { id = item.idUsuario }) |
-                                    @Html.ActionLink("Detalles", "GetUsuario", new { id = item.idUsuario }) |
-                                    @Html.ActionLink("Borrar", "Borrar", new { id = item.idUsuario })
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.rol)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.estado)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Update", new { id = item.idUsuario }) |
+                                        @Html.ActionLink("Detalles", "GetUsuario", new { id = item.idUsuario }) |
+                                        @Html.ActionLink("Borrar", "Borrar", new { id = item.idUsuario })
 
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    </body>
+</body>
