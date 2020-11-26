@@ -50,7 +50,26 @@ namespace MovilidadInteligenteUI.Controllers
         }
 
 
-        public async Task<IActionResult> Borrar(string id)
+        //[HttpPost]
+        public async Task<IActionResult> GetUnidad(string id)
+        {
+            Unidad unidad = new Unidad();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Unidad" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    unidad = JsonConvert.DeserializeObject<Unidad>(apiResponse);
+                }
+            }
+            return View(unidad);
+        }
+
+
+
+
+            public async Task<IActionResult> Borrar(string id)
         {
             Unidad unidad = new Unidad();
             using (var httpClient = new HttpClient())
