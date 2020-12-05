@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace MovilidadInteligenteUI.Models
     public class Unidad
     {
         [Display(Name = "ID")]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string idUnidad { get; set; }
 
         [Display(Name = "Descripcion")]

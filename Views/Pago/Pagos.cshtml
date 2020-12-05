@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MovilidadInteligenteUI.Models.Pago>
+
+@{
+    ViewData["Title"] = "Tabla de Pagos";
+}
+
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="row gutters-sm">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Tabla de Pagos</h1>
+                    <p>
+                        @**@ <a asp-action="Crear" class="btn btn-primary">Crear</a>
+                    </p>
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idPago)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idUsuario)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idUnidad)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.monto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fechaPago)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estado)
+                                </th>
+                                <th> Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idPago)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idUsuario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idUnidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fechaPago)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estado)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Update", new { id = item.idPago }) |
+                                    @Html.ActionLink("Detalles", "GetPago", new { id = item.idPago }) |
+                                    @Html.ActionLink("Borrar", "Borrar", new { id = item.idPago })
+
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
