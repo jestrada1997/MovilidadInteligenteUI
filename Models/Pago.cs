@@ -10,9 +10,7 @@ namespace MovilidadInteligenteUI.Models
 {
     public class Pago
     {
-        [Display(Name = "ID")]
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+
         public string idPago { get; set; }
 
         [Display(Name = "ID Usuario")]
