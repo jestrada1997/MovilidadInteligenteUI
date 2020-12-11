@@ -70,17 +70,17 @@ namespace MovilidadInteligenteUI.Controllers
 
         public async Task<IActionResult> Update(string id)
         {
-            Linea Linea = new Linea();
+            Linea linea = new Linea();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44354/api/Linea" + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
-                    Linea = JsonConvert.DeserializeObject<Linea>(apiResponse);
+                    linea = JsonConvert.DeserializeObject<Linea>(apiResponse);
                 }
             }
-            return View(Linea);
+            return View(linea);
         }
 
         [HttpPost]
@@ -89,19 +89,14 @@ namespace MovilidadInteligenteUI.Controllers
             Linea receivedLinea = new Linea();
             using (var httpClient = new HttpClient())
             {
-                var content = new MultipartFormDataContent();
-                content.Add(new StringContent(Linea.idLinea), "idUsuario");
-                content.Add(new StringContent(Linea.descripcion), "nombre");
-                content.Add(new StringContent(Linea.monto.ToString()), "Monto");
-                content.Add(new StringContent(Linea.codigoCTP.ToString()), "CodigoCTP");
-                content.Add(new StringContent(Linea.estado.ToString()), "estado");
-                StringContent data = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
-
+               
+                StringContent data = new StringContent(JsonConvert.SerializeObject(Linea), Encoding.UTF8, "application/json");
                 using (var response = await httpClient.PutAsync("https://localhost:44354/api/Linea", data))
                 {
 
-                    ViewBag.Result = "Success";
                 }
+
+
             }
             return RedirectToAction("Lineas", "Linea", null);
         }

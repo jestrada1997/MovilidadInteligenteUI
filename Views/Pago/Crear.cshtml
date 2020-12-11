@@ -1,0 +1,62 @@
+﻿@model MovilidadInteligenteUI.Models.Pago
+
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crear</title>
+</head>
+<body>
+
+    <h4>Pago</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Crear">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="idPago" class="control-label"></label>
+                    <input asp-for="idPago" class="form-control" />
+                    <span asp-validation-for="idPago" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="idUsuario" class="control-label"></label>
+                    <input asp-for="idUsuario" class="form-control" />
+                    <span asp-validation-for="idUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="idUnidad" class="control-label"></label>
+                    <input asp-for="idUnidad" class="form-control" />
+                    <span asp-validation-for="idUnidad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="monto" class="control-label"></label>
+                    <input asp-for="monto" class="form-control" />
+                    <span asp-validation-for="monto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fechaPago" class="control-label"></label>
+                    <input asp-for="fechaPago" class="form-control" />
+                    <span asp-validation-for="fechaPago" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Pagos" class="btn btn-primary">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

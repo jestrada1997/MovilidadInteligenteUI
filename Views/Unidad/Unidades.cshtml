@@ -13,7 +13,7 @@
                     <h1>View</h1>
 
                     <p>
-                        <a asp-action="Create">Create New</a>
+                        <a asp-action="Crear">Crear</a>
                     </p>
                     <table class="table">
                         <thead>
@@ -50,9 +50,9 @@
                                         @Html.DisplayFor(modelItem => item.estado)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new {id=item.idUnidad }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.idUnidad }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.idUnidad })
+                                        @Html.ActionLink("Update", "Editar", new {id=item.idUnidad }) |
+                                        @Html.ActionLink("GetUnidad", "Detalles", new { id = item.idUnidad }) |
+                                        @Html.ActionLink("Borrar", "Delete", new { id = item.idUnidad })
                                     </td>
                                 </tr>
                             }

@@ -66,10 +66,41 @@ namespace MovilidadInteligenteUI.Controllers
             return View(unidad);
         }
 
+        public async Task<IActionResult> Update(string id)
+        {
+            Unidad Unidad = new Unidad();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Unidad" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    Unidad = JsonConvert.DeserializeObject<Unidad>(apiResponse);
+                }
+            }
+            return View(Unidad);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Unidad Unidad)
+        {
+            Unidad receivedUnidad = new Unidad();
+            using (var httpClient = new HttpClient())
+            {
+
+                StringContent data = new StringContent(JsonConvert.SerializeObject(Unidad), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PutAsync("https://localhost:44354/api/Unidad", data))
+                {
+
+                }
 
 
+            }
+            return RedirectToAction("Unidades", "Unidad", null);
+        }
 
-            public async Task<IActionResult> Borrar(string id)
+
+        public async Task<IActionResult> Borrar(string id)
         {
             Unidad unidad = new Unidad();
             using (var httpClient = new HttpClient())
