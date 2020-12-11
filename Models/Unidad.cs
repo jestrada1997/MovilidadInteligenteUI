@@ -11,6 +11,7 @@ namespace MovilidadInteligenteUI.Models
     public class Unidad
     {
         [Display(Name = "ID")]
+        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string idUnidad { get; set; }
 

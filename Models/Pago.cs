@@ -10,7 +10,7 @@ namespace MovilidadInteligenteUI.Models
 {
     public class Pago
     {
-
+        [Display(Name = "ID")]
         public string idPago { get; set; }
 
         [Display(Name = "ID Usuario")]

@@ -32,7 +32,24 @@ namespace MovilidadInteligenteUI.Controllers
             return View(PagosList);
         }
 
-       // public ViewResult Crear() => View();
+       public ViewResult Crear() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Crear(Pago pago)
+        {
+            Pago receivedUsuario = new Pago();
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(pago), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("https://localhost:44354/api/Pago", content))
+                {
+
+                }
+            }
+            return RedirectToAction("Pagos", "Pago", null);
+        }
+
 
 
         //[HttpPost]
