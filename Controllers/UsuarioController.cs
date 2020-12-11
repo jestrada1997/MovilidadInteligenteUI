@@ -96,28 +96,47 @@ namespace MovilidadInteligenteUI.Controllers
             Usuario receivedUsuario = new Usuario();
             using (var httpClient = new HttpClient())
             {
-                var content = new MultipartFormDataContent();
-                content.Add(new StringContent(usuario.idUsuario), "idUsuario");
-                content.Add(new StringContent(usuario.nombre), "nombre");
-                content.Add(new StringContent(usuario.apellido1), "apellido1");
-                content.Add(new StringContent(usuario.apellido2), "apellido2");
-                content.Add(new StringContent(usuario.correo), "correo");
-                content.Add(new StringContent(usuario.clave), "clave");
-                content.Add(new StringContent(usuario.telefono), "telefono");
-                content.Add(new StringContent(usuario.saldo.ToString()), "saldo");
-                content.Add(new StringContent(usuario.fechaCreacion.ToString()), "fechaCreacion");
-                content.Add(new StringContent(usuario.rol), "rol");
-                content.Add(new StringContent(usuario.estado.ToString()), "estado");
-                StringContent data = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
+                StringContent data = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
                 using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
                 {
-                   
+
                     ViewBag.Result = "Success";
                 }
+
+
             }
-            return RedirectToAction("Usuarios", "Usuario", null);
+            return RedirectToAction("Lineas", "Linea", null);
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Update(Usuario usuario)
+        //{
+        //    Usuario receivedUsuario = new Usuario();
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        var content = new MultipartFormDataContent();
+        //        content.Add(new StringContent(usuario.idUsuario), "idUsuario");
+        //        content.Add(new StringContent(usuario.nombre), "nombre");
+        //        content.Add(new StringContent(usuario.apellido1), "apellido1");
+        //        content.Add(new StringContent(usuario.apellido2), "apellido2");
+        //        content.Add(new StringContent(usuario.correo), "correo");
+        //        content.Add(new StringContent(usuario.clave), "clave");
+        //        content.Add(new StringContent(usuario.telefono), "telefono");
+        //        content.Add(new StringContent(usuario.saldo.ToString()), "saldo");
+        //        content.Add(new StringContent(usuario.fechaCreacion.ToString()), "fechaCreacion");
+        //        content.Add(new StringContent(usuario.rol), "rol");
+        //        content.Add(new StringContent(usuario.estado.ToString()), "estado");
+        //        StringContent data = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+
+        //        using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
+        //        {
+
+        //            ViewBag.Result = "Success";
+        //        }
+        //    }
+        //    return RedirectToAction("Usuarios", "Usuario", null);
+        //}
 
         //public async Task<IActionResult> Update(int id)
         //{
