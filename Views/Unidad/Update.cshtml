@@ -1,0 +1,86 @@
+﻿@model MovilidadInteligenteUI.Models.Unidad
+
+@{
+    ViewData["Title"] = "Actualizar Unidad";
+}
+
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <h4>Actualizar Unidad</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="post">
+                            <div class="form-group">
+                                <label asp-for="idUnidad"></label>
+                                <input class="form-control" asp-for="idUnidad" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ruta"></label>
+                                <input class="form-control" asp-for="ruta" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="monto"></label>
+                                <input class="form-control" asp-for="monto" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="descripcion"></label>
+                                <input class="form-control" asp-for="descripcion" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="placa"></label>
+                                <input class="form-control" asp-for="placa" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="asientos"></label>
+                                <input class="form-control" asp-for="asientos" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="estado"></label>
+                                <input class="form-check-label" asp-for="estado" />
+
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                                <a asp-action="Unidades" class="btn btn-primary">Regresar</a>
+                            </div>
+                        </form>
+
+                        @if (ViewBag.Result == "Success")
+                        {
+                            <h2>Reservation</h2>
+                            <table class="table table-sm table-striped table-bordered m-2">
+                                <thead>
+                                    <tr>
+                                        <th>Identificacion</th>
+                                        <th>Descripción</th>
+                                        <th>Placa</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.idUnidad</td>
+                                        <td>@Model.descripcion</td>
+                                        <td>@Model.placa</td>
+                                        <td>@Model.estado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+               

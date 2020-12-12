@@ -55,6 +55,7 @@ namespace MovilidadInteligenteUI.Controllers
             return View(usuario);
         }
 
+
         public ViewResult Crear() => View();
 
         [HttpPost]
@@ -96,59 +97,18 @@ namespace MovilidadInteligenteUI.Controllers
             Usuario receivedUsuario = new Usuario();
             using (var httpClient = new HttpClient())
             {
-                var content = new MultipartFormDataContent();
-                content.Add(new StringContent(usuario.idUsuario), "idUsuario");
-                content.Add(new StringContent(usuario.nombre), "nombre");
-                content.Add(new StringContent(usuario.apellido1), "apellido1");
-                content.Add(new StringContent(usuario.apellido2), "apellido2");
-                content.Add(new StringContent(usuario.correo), "correo");
-                content.Add(new StringContent(usuario.clave), "clave");
-                content.Add(new StringContent(usuario.telefono), "telefono");
-                content.Add(new StringContent(usuario.saldo.ToString()), "saldo");
-                content.Add(new StringContent(usuario.fechaCreacion.ToString()), "fechaCreacion");
-                content.Add(new StringContent(usuario.rol), "rol");
-                content.Add(new StringContent(usuario.estado.ToString()), "estado");
-                StringContent data = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
+                StringContent data = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
                 using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
                 {
-                   
-                    ViewBag.Result = "Success";
+
+                    ViewBag.Result = "Usuario Actualizado";
                 }
+
+
             }
-            return RedirectToAction("Usuarios", "Usuario", null);
+            return RedirectToAction("Lineas", "Linea", null);
         }
-
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    Usuario Usuario = new Usuario();
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + id.ToString()))
-        //        {
-        //            string apiResponse = await response.Content.ReadAsStringAsync();
-        //            StringContent content = new StringContent(JsonConvert.SerializeObject(Usuario), Encoding.UTF8, "application/json");
-        //        }
-        //    }
-        //    return View(Usuario);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Update(int id, Usuario Usuario)
-        //{
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        var request = new HttpRequestMessage
-        //        {
-        //            RequestUri = new Uri("https://localhost:44354/api/Usuario" + id),
-        //            Method = new HttpMethod("Patch"),
-        //            Content = new StringContent("[{ \"op\":\"replace\", \"path\":\"Nombre\", \"value\":\"" + Usuario.nombre + "\"},{ \"op\":\"replace\", \"path\":\"Apellido1\", \"value\":\"" + Usuario.apellido1 + "\"}]", Encoding.UTF8, "application/json")
-        //        };
-
-        //        var response = await httpClient.SendAsync(request);
-        //    }
-        //    return RedirectToAction("Usuarios");
-        //}
 
         public async Task<IActionResult> Borrar(string id)
         {
@@ -179,5 +139,80 @@ namespace MovilidadInteligenteUI.Controllers
 
             return RedirectToAction("Usuarios");
         }
+
+        public async Task<IActionResult> Perfil()
+        {
+
+
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + "5fa9f73f9d3438e1bc639efa"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                }
+            }
+            return View(usuario);
+            
+        }
+
+
+
+        //************************************Cliente****************************************************
+
+
+        public async Task<IActionResult> GetUsuarioCliente(string id)
+        {
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                }
+            }
+            return View(usuario);
+        }
+
+
+        public async Task<IActionResult> UpdateCliente(string id)
+        {
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                }
+            }
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCliente(Usuario usuario)
+        {
+            Usuario receivedUsuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+
+                StringContent data = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
+                {
+
+                    ViewBag.Result = "Usuario Actualizado";
+                }
+
+
+            }
+            return View(usuario);
+        }
+        
     }
 }
+

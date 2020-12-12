@@ -1,59 +1,72 @@
 ﻿@model IEnumerable<MovilidadInteligenteUI.Models.Deposito>
 
 @{
-    ViewData["Title"] = "Depositos";
+    ViewData["Title"] = "Tabla de Depositos";
 }
 
-<h1>Depositos</h1>
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="row gutters-sm">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Tabla de Depositos</h1>
+                    <!--<p>-->
+                        @**@ <!--<a asp-action="Crear" class="btn btn-primary">Crear</a>
+                    </p>-->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idDeposito)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idUsuario)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.monto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fechaDeposito)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estado)
+                                </th>
+                                <th> Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idDeposito)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idUsuario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fechaDeposito)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estado)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Editar", "Update", new { id = item.idDeposito }) |*@
+                                    @Html.ActionLink("Detalles", "GetDeposito", new { id = item.idDeposito })
+                                    @*@Html.ActionLink("Borrar", "Borrar", new { id = item.idDeposito })*@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.idDeposito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.idUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.monto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaDeposito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.estado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idDeposito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.idUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.monto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaDeposito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

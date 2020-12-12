@@ -32,8 +32,23 @@ namespace MovilidadInteligenteUI.Controllers
             return View(PagosList);
         }
 
-       // public ViewResult Crear() => View();
+        public ViewResult Crear() => View();
 
+        [HttpPost]
+        public async Task<IActionResult> Crear(Pago Pago)
+        {
+            Pago receivedLinea = new Pago();
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Pago), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("https://localhost:44354/api/Pago", content))
+                {
+
+                }
+            }
+            return RedirectToAction("Pagos", "Pago", null);
+        }
 
         //[HttpPost]
         public async Task<IActionResult> GetPago(string id)
@@ -52,5 +67,68 @@ namespace MovilidadInteligenteUI.Controllers
             return View(pago);
         }
 
+        public async Task<IActionResult> Update(string id)
+        {
+            Pago Pago = new Pago();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Pago" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    Pago = JsonConvert.DeserializeObject<Pago>(apiResponse);
+                }
+            }
+            return View(Pago);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Pago Pago)
+        {
+            Pago receivedLinea = new Pago();
+            using (var httpClient = new HttpClient())
+            {
+
+                StringContent data = new StringContent(JsonConvert.SerializeObject(Pago), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PutAsync("https://localhost:44354/api/Pago", data))
+                {
+
+                }
+
+
+            }
+            return RedirectToAction("Pagos", "Pago", null);
+        }
+
+
+        public async Task<IActionResult> Borrar(string id)
+        {
+            Pago Pago = new Pago();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Pago" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    Pago = JsonConvert.DeserializeObject<Pago>(apiResponse);
+                }
+            }
+            return View(Pago);
+        }
+
+
+        public async Task<IActionResult> Delete(string id)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync("https://localhost:44354/api/Pago" + "?id=" + id))
+                {
+
+                }
+            }
+
+            return RedirectToAction("Pagos");
+        }
     }
 }

@@ -1,0 +1,56 @@
+﻿@model MovilidadInteligenteUI.Models.Deposito
+
+@{
+    ViewData["Title"] = "Detalle del Deposito";
+}
+
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <div>
+                    <h4>Detalle del Pago</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.idDeposito)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.idDeposito)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.idUsuario)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.idUsuario)
+                        </dd>       
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.monto)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.monto)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.fechaDeposito)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.fechaDeposito)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.estado)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.estado)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="form-group">
+                    <a asp-action="Pagos" class="btn btn-primary">Regresar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
