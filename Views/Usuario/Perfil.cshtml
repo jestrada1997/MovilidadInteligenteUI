@@ -24,9 +24,9 @@
                                                         @*Botones clientes*@
                                                     <div class="form-vertical">
                                                         <br>
-                                                        @Html.ActionLink("Comprar", "Crear", "Pago", new { @*id = Model.IDUsuario*@}, new { @class = "btn btn-primary" })
-                                                        
-                                                        @Html.ActionLink("Cuenta", "GetUsuarioCliente", "Usuario", new { id = Model.idUsuario}, new { @class = "btn btn-primary" })
+                                                        @Html.ActionLink("Cuenta", "GetUsuarioCliente", "Usuario", new { id = Model.idUsuario }, new { @class = "btn btn-primary" })
+                                                        @Html.ActionLink("Depositar", "CrearCliente", "Desposito", new { @*id = Model.IDUsuario*@}, new { @class = "btn btn-primary" })
+                                                        @Html.ActionLink("Agendar Viaje", "Agendar", "Desposito", new { @*id = Model.IDUsuario*@}, new { @class = "btn btn-primary" })
                                                         <br>
                                                     </div>
                                                         </div>
