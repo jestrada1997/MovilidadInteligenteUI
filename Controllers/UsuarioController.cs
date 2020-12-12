@@ -107,7 +107,7 @@ namespace MovilidadInteligenteUI.Controllers
 
 
             }
-            return RedirectToAction("Lineas", "Linea", null);
+            return View(usuario);
         }
 
         public async Task<IActionResult> Borrar(string id)
