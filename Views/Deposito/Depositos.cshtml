@@ -12,9 +12,9 @@
             <div class="card">
                 <div class="card-body">
                     <h1>Tabla de Depositos</h1>
-                    <p>
-                        @**@ <a asp-action="Crear" class="btn btn-primary">Crear</a>
-                    </p>
+                    <!--<p>-->
+                        @**@ <!--<a asp-action="Crear" class="btn btn-primary">Crear</a>
+                    </p>-->
                     <table class="table">
                         <thead>
                             <tr>
@@ -56,9 +56,9 @@
                                     @Html.DisplayFor(modelItem => item.estado)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Editar", "Update", new { id = item.idDeposito }) |
-                                    @Html.ActionLink("Detalles", "GetUsuario", new { id = item.idDeposito }) |
-                                    @Html.ActionLink("Borrar", "Borrar", new { id = item.idDeposito })
+                                    @*@Html.ActionLink("Editar", "Update", new { id = item.idDeposito }) |*@
+                                    @Html.ActionLink("Detalles", "GetDeposito", new { id = item.idDeposito })
+                                    @*@Html.ActionLink("Borrar", "Borrar", new { id = item.idDeposito })*@
 
                                 </td>
                             </tr>

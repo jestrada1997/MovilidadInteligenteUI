@@ -91,12 +91,12 @@ namespace MovilidadInteligenteUI.Controllers
                 StringContent data = new StringContent(JsonConvert.SerializeObject(Unidad), Encoding.UTF8, "application/json");
                 using (var response = await httpClient.PutAsync("https://localhost:44354/api/Unidad", data))
                 {
-
+                    ViewBag.Result = "Unidad Actualizada";
                 }
 
 
             }
-            return RedirectToAction("Unidades", "Unidad", null);
+            return View(Unidad);
         }
 
 
@@ -113,6 +113,20 @@ namespace MovilidadInteligenteUI.Controllers
                 }
             }
             return View(unidad);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync("https://localhost:44354/api/Unidad" + "?id=" + id))
+                {
+
+                }
+            }
+
+            return RedirectToAction("Unidades");
         }
 
 

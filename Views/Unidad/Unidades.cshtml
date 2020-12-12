@@ -21,10 +21,16 @@
                                     @Html.DisplayNameFor(model => model.idUnidad)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.descripcion)
+                                    @Html.DisplayNameFor(model => model.ruta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.monto)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.placa)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.asientos)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.estado)
@@ -40,10 +46,16 @@
                                     @Html.DisplayFor(modelItem => item.idUnidad)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                    @Html.DisplayFor(modelItem => item.ruta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.monto)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.placa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.asientos)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.estado)
@@ -51,7 +63,7 @@
 
                                 <td>
                                     @Html.ActionLink("Editar", "Update", new { id = item.idUnidad }) |
-                                    @Html.ActionLink("Detalles", "GetUsuario", new { id = item.idUnidad }) |
+                                    @Html.ActionLink("Detalles", "GetUnidad", new { id = item.idUnidad }) |
                                     @Html.ActionLink("Borrar", "Borrar", new { id = item.idUnidad })
 
                                 </td>

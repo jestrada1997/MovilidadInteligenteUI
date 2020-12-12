@@ -10,13 +10,23 @@
     <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h4>Crear Usuario</h4>
+                    <h4>Crear Unidad</h4>
                     <hr />
                     <div class="row">
                         <div class="col-md-4">
                             <form asp-action="Crear">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 @Html.HiddenFor(model => model.idUnidad)
+                                <div class="form-group">
+                                    <label asp-for="ruta" class="control-label"></label>
+                                    <input asp-for="ruta" class="form-control" />
+                                    <span asp-validation-for="ruta" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="monto" class="control-label"></label>
+                                    <input asp-for="monto" class="form-control" />
+                                    <span asp-validation-for="monto" class="text-danger"></span>
+                                </div>
                                 <div class="form-group">
                                     <label asp-for="descripcion" class="control-label"></label>
                                     <input asp-for="descripcion" class="form-control" />
@@ -28,14 +38,20 @@
                                     <span asp-validation-for="placa" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="estado" class="control-label"></label>
-                                    <input asp-for="estado" class="form-control" />
-                                    <span asp-validation-for="estado" class="text-danger"></span>
+                                    <label asp-for="asientos" class="control-label"></label>
+                                    <input asp-for="asientos" class="form-control" />
+                                    <span asp-validation-for="asientos" class="text-danger"></span>
                                 </div>
-                        
+
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
+                                    </label>
+                                </div>
+
                                 <div class="form-group">
                                     <input type="submit" value="Crear" class="btn btn-primary" />
-                                    <a asp-action="Usuarios" class="btn btn-primary">Regresar</a>
+                                    <a asp-action="Unidades" class="btn btn-primary">Regresar</a>
                                 </div>
                             </form>
                         </div>

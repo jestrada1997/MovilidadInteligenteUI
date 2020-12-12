@@ -11,8 +11,6 @@ namespace MovilidadInteligenteUI.Models
     public class Unidad
     {
         [Display(Name = "ID")]
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string idUnidad { get; set; }
 
         [Display(Name = "Descripcion")]
@@ -20,7 +18,16 @@ namespace MovilidadInteligenteUI.Models
 
         [Display(Name = "Placa")]
         public string placa { get; set; }
-        
+
+        [Display(Name = "Ruta")]
+        public string ruta { get; set; }
+
+        [Display(Name = "Monto")]
+        public int monto { get; set; }
+
+        [Display(Name = "Cantidad de Asientos")]
+        public int asientos { get; set; }
+
         [Display(Name = "Estado")]
         public bool estado { get; set; }
     }
