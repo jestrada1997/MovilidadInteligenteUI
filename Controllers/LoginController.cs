@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Authentication;
@@ -130,6 +131,26 @@ namespace MovilidadInteligenteUI.Controllers
 
                 throw;
             }
+        }
+
+        public ViewResult Registrar() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Registrar(Usuario usuario)
+        {
+            usuario.saldo = 0;
+            usuario.idUsuario = null;
+            Usuario receivedUsuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("https://localhost:44354/api/Usuario", content))
+                {
+
+                }
+            }
+            return RedirectToAction("login", "Login");
         }
     }
 }

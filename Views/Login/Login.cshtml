@@ -26,13 +26,9 @@ html, body { background-image: url('https://cdn.pixabay.com/photo/2019/09/26/07/
             @Html.PasswordFor(m => m.Clave, new { @class = "form-control", placeholder = "Contraseña", tabindex = 2 })
             @Html.ValidationMessageFor(m => m.Clave, "", new { @class = "text-danger" })
         </div>
-        <div class="remember">
-            @Html.CheckBoxFor(m => m.Recordarme, htmlAttributes: new { @id = "login-remember", tabindex = 3 })
-            @Html.LabelFor(m => m.Recordarme)
+        <div>
+            <a asp-controller="Login" asp-action="Registrar">Registrarse</a>
         </div>
-        <button type="button" class="btn btn-lg btn-success btn-block">
-            @Html.ActionLink("Registrarse", "Registra", "Usuario")
-        </button>
         <button type="submit" id="LoginButton" class="btn btn-lg btn-success btn-block" tabindex="4">Ingresar</button>
 
     }
