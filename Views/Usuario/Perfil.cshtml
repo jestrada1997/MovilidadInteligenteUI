@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Perfil";
+    Layout = "~/Views/Shared/_LoginPartialCliente.cshtml";
 }
 
 <br />
@@ -25,8 +26,8 @@
                                                     <div class="form-vertical">
                                                         <br>
                                                         @Html.ActionLink("Cuenta", "GetUsuarioCliente", "Usuario", new { id = Model.idUsuario }, new { @class = "btn btn-primary" })
-                                                        @Html.ActionLink("Depositar", "CrearCliente", "Desposito", new { @*id = Model.IDUsuario*@}, new { @class = "btn btn-primary" })
-                                                        @Html.ActionLink("Agendar Viaje", "Agendar", "Desposito", new { @*id = Model.IDUsuario*@}, new { @class = "btn btn-primary" })
+                                                        @Html.ActionLink("Depositar", "DepositoCliente", "Deposito", new { @*id = Model.IDUsuario*@}, new { @class = "btn btn-primary" })
+                                                    <a class="btn btn-primary" @Html.ActionLink("Agendar Viaje", "GetDestino", "Unidad")</a> 
                                                         <br>
                                                     </div>
                                                         </div>

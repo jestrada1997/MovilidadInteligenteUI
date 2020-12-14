@@ -18,6 +18,11 @@ namespace MovilidadInteligenteUI.Controllers
     {
         public async Task<IActionResult> Depositos()
         {
+            if (UsuarioController.UserRol == "Cliente")
+            {
+                return RedirectToAction("Perfil", "Usuario");
+            }
+
             List<Deposito> DepositosList = new List<Deposito>();
             using (var httpClient = new HttpClient())
             {
@@ -129,6 +134,82 @@ namespace MovilidadInteligenteUI.Controllers
             }
 
             return RedirectToAction("Depositos");
+        }
+
+
+
+
+        ///*********************************CLIENTE*********************************************
+        ///
+
+
+        public ViewResult DepositoCliente() => View();
+
+
+        [HttpPost]
+        public async Task<IActionResult> DepositoCliente(Deposito Deposito)
+        {
+            Deposito receivedLinea = new Deposito();
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Deposito), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("https://localhost:44354/api/Deposito", content))
+                {
+
+                }
+            }
+            return RedirectToAction("Depositos", "Deposito", null);
+        }
+
+
+
+
+
+
+
+
+
+        public ViewResult DepositoC() => View();
+        [HttpPost]
+        public async Task<IActionResult> DepositoC(int monto, string idu)
+        {
+            Usuario user = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + idu))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    user = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                }
+            }
+            user.saldoPend = monto;
+
+            using (var httpClient = new HttpClient())
+            {
+
+                StringContent data = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
+                {
+
+                    ViewBag.Result = "Usuario Actualizado";
+                }
+
+
+            }
+
+            //Deposito receivedLinea = new Deposito();
+            //using (var httpClient = new HttpClient())
+            //{
+            //    StringContent content = new StringContent(JsonConvert.SerializeObject(Deposito), Encoding.UTF8, "application/json");
+
+            //    using (var response = await httpClient.PostAsync("https://localhost:44354/api/Deposito", content))
+            //    {
+
+            //    }
+            //}
+            return RedirectToAction("Perfil", "Usuario", null);
         }
     }
 }

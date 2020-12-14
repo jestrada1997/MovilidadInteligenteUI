@@ -30,5 +30,9 @@ namespace MovilidadInteligenteUI.Models
 
         [Display(Name = "Estado")]
         public bool estado { get; set; }
+
+        [Display(Name = "Horario")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public List<DateTime> horarios { get; set; }
     }
 }

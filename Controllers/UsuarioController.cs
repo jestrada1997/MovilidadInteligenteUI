@@ -16,8 +16,15 @@ namespace MovilidadInteligenteUI.Controllers
 {
     public class UsuarioController : Controller
     {
+
+        public static String UserGlobal;
+        public static String UserRol;
         public async Task<IActionResult> Usuarios()
         {
+            if (UserRol== "Cliente") {
+                return RedirectToAction("Perfil", "Usuario");
+            }
+
             List<Usuario> UsuariosList = new List<Usuario>();
             using (var httpClient = new HttpClient())
             {
@@ -139,25 +146,44 @@ namespace MovilidadInteligenteUI.Controllers
 
             return RedirectToAction("Usuarios");
         }
-
-        public async Task<IActionResult> Perfil()
+        [Route("idUsuario")]
+        public async Task<IActionResult> Perfil(string id)
         {
-
-
+            if (UserGlobal == null) {
+                UserGlobal = id; 
+            }
+            
             Usuario usuario = new Usuario();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + "5fa9f73f9d3438e1bc639efa"))
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + UserGlobal))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
                 }
             }
+            UserRol = usuario.rol;
             return View(usuario);
             
         }
 
+        
+        //public async Task<IActionResult> Perfil()
+        //{
+        //    Usuario usuario = new Usuario();
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + UserGlobal))
+        //        {
+        //            string apiResponse = await response.Content.ReadAsStringAsync();
+
+        //            usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+        //        }
+        //    }
+        //    return View(usuario);
+
+        //}
 
 
         //************************************Cliente****************************************************

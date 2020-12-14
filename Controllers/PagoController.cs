@@ -18,6 +18,10 @@ namespace MovilidadInteligenteUI.Controllers
     {
         public async Task<IActionResult> Pagos()
         {
+            if (UsuarioController.UserRol == "Cliente")
+            {
+                return RedirectToAction("Perfil", "Usuario");
+            }
             List<Pago> PagosList = new List<Pago>();
             using (var httpClient = new HttpClient())
             {

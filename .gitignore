@@ -5,3 +5,5 @@
 /obj
 /Properties
 /.vs/MovilidadInteligenteUI
+/bin/Debug/netcoreapp3.1/runtimes
+/bin/Debug/netcoreapp3.1

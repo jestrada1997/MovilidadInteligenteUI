@@ -1,16 +1,17 @@
 ﻿@model MovilidadInteligenteUI.Models.Usuario
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Registrarse";
+    Layout = "~/Views/Shared/_LoginPartial.cshtml";
 }
 
 <style>
     html, body {
-        background-image: url('https://cdn.pixabay.com/photo/2019/09/26/07/57/bus-shelters-4505337_960_720.png');
+        /*background-image: url('https://cdn.pixabay.com/photo/2019/09/26/07/57/bus-shelters-4505337_960_720.png');
         background-size: cover;
         background-repeat: no-repeat;
         height: 100%;
-        font-family: 'Numans', sans-serif;
+        font-family: 'Numans', sans-serif;*/
     }
 
     .form-signin {
@@ -19,70 +20,78 @@
         padding: 15px;
     }
 </style>
-<div class="container-fluid">
-    <h1>Registrar</h1>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.idUsuario)
-            @Html.HiddenFor(model => model.saldo)
-            <form asp-action="Registrar">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-body form-vertical">
+                <div class="container-fluid">
+                    <h1>Registrar</h1>
+                    <hr /><div class="form-vertical" >
+                    <div class="row">
+                        
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.idUsuario)
+                            @Html.HiddenFor(model => model.saldo)
+                            <form asp-action="Registrar">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <div class="form-group">
-                    <label asp-for="nombre" class="control-label"></label>
-                    <input asp-for="nombre" class="form-control" />
-                    <span asp-validation-for="nombre" class="text-danger"></span>
+                                <div class="form-group">
+                                    <label asp-for="nombre" class="control-label"></label>
+                                    <input asp-for="nombre" class="form-control" />
+                                    <span asp-validation-for="nombre" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="apellido1" class="control-label"></label>
+                                    <input asp-for="apellido1" class="form-control" />
+                                    <span asp-validation-for="apellido1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="apellido2" class="control-label"></label>
+                                    <input asp-for="apellido2" class="form-control" />
+                                    <span asp-validation-for="apellido2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="correo" class="control-label"></label>
+                                    <input asp-for="correo" class="form-control" />
+                                    <span asp-validation-for="correo" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="clave" class="control-label"></label>
+                                    <input asp-for="clave" class="form-control" />
+                                    <span asp-validation-for="clave" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="telefono" class="control-label"></label>
+                                    <input asp-for="telefono" class="form-control" />
+                                    <span asp-validation-for="telefono" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="fechaCreacion" class="control-label"></label>
+                                    <input asp-for="fechaCreacion" class="form-control" />
+                                    <span asp-validation-for="fechaCreacion" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="rol" class="control-label"></label>
+                                    <input asp-for="rol" class="form-control" />
+                                    <span asp-validation-for="rol" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Crear" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a asp-controller="Login" asp-action="login">Regresar</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="apellido1" class="control-label"></label>
-                    <input asp-for="apellido1" class="form-control" />
-                    <span asp-validation-for="apellido1" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="apellido2" class="control-label"></label>
-                    <input asp-for="apellido2" class="form-control" />
-                    <span asp-validation-for="apellido2" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="correo" class="control-label"></label>
-                    <input asp-for="correo" class="form-control" />
-                    <span asp-validation-for="correo" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="clave" class="control-label"></label>
-                    <input asp-for="clave" class="form-control" />
-                    <span asp-validation-for="clave" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="telefono" class="control-label"></label>
-                    <input asp-for="telefono" class="form-control" />
-                    <span asp-validation-for="telefono" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="fechaCreacion" class="control-label"></label>
-                    <input asp-for="fechaCreacion" class="form-control" />
-                    <span asp-validation-for="fechaCreacion" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="rol" class="control-label"></label>
-                    <input asp-for="rol" class="form-control" />
-                    <span asp-validation-for="rol" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
-                    </label>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Crear" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-
-    <div>
-        <a asp-controller="Login" asp-action="login">Regresar</a>
     </div>
 </div>

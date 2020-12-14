@@ -3,7 +3,15 @@
 @{
     ViewData["Title"] = "Tabla de Depositos";
 }
-
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+</head>
 <br />
 <body>
     <br />
@@ -13,9 +21,10 @@
                 <div class="card-body">
                     <h1>Tabla de Depositos</h1>
                     <!--<p>-->
-                        @**@ <!--<a asp-action="Crear" class="btn btn-primary">Crear</a>
+                    @**@
+                    <!--<a asp-action="Crear" class="btn btn-primary">Crear</a>
                     </p>-->
-                    <table class="table">
+                     <table id="example" class="table">
                         <thead>
                             <tr>
                                 <th>
@@ -39,29 +48,29 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idDeposito)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idUsuario)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.monto)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.fechaDeposito)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.estado)
-                                </td>
-                                <td>
-                                    @*@Html.ActionLink("Editar", "Update", new { id = item.idDeposito }) |*@
-                                    @Html.ActionLink("Detalles", "GetDeposito", new { id = item.idDeposito })
-                                    @*@Html.ActionLink("Borrar", "Borrar", new { id = item.idDeposito })*@
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idDeposito)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idUsuario)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.monto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fechaDeposito)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.estado)
+                                    </td>
+                                    <td>
+                                        @*@Html.ActionLink("Editar", "Update", new { id = item.idDeposito }) |*@
+                                        @Html.ActionLink("Detalles", "GetDeposito", new { id = item.idDeposito })
+                                        @*@Html.ActionLink("Borrar", "Borrar", new { id = item.idDeposito })*@
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -70,3 +79,15 @@
         </div>
     </div>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });
+</script>
+
+<script>
