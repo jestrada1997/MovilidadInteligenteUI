@@ -45,10 +45,36 @@
                                 <input class="form-check-label" asp-for="estado" />
 
                             </div>
+
+                            <div class="form-group">
+                                <label asp-for="horarios" class="control-label"></label>
+
+                                <input class="form-control" asp-for="horarios" type="datetime-local"
+                                       min="2020-12-17T05:30" max="2020-12-31T17:30">
+                                <span type="datetime" asp-validation-for="horarios" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="horarios" class="control-label"></label>
+
+                                <input class="form-control" asp-for="horarios" type="datetime-local"
+                                       min="2020-12-17T05:30" max="2020-12-31T17:30">
+                                <span type="datetime" asp-validation-for="horarios" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="horarios" class="control-label"></label>
+
+                                <input class="form-control" asp-for="horarios" type="datetime-local"
+                                       value="horarios"
+                                       min="2020-12-17T05:30" max="2020-12-31T17:30">
+                                <span type="datetime" asp-validation-for="horarios" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Actualizar</button>
                                 <a asp-action="Unidades" class="btn btn-primary">Regresar</a>
                             </div>
+
+
+
                         </form>
 
                         @if (ViewBag.Result == "Success")

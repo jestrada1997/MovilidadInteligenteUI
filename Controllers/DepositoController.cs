@@ -18,6 +18,11 @@ namespace MovilidadInteligenteUI.Controllers
     {
         public async Task<IActionResult> Depositos()
         {
+            if (UsuarioController.UserRol == "Cliente")
+            {
+                return RedirectToAction("Perfil", "Usuario");
+            }
+
             List<Deposito> DepositosList = new List<Deposito>();
             using (var httpClient = new HttpClient())
             {

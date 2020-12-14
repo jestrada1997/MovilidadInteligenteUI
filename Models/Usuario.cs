@@ -39,6 +39,9 @@ namespace MovilidadInteligenteUI.Models
         [Display(Name = "Saldo")]
         public int saldo { get; set; }
 
+        [Display(Name = "Saldo Pendiente")]
+        public int saldoPend { get; set; }
+
         [Display(Name = "Fecha de Creación")]
         public DateTime fechaCreacion { get; set; }
 

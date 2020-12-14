@@ -3,6 +3,16 @@
 @{
     ViewData["Title"] = "Tabla de Unidades";
 }
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+</head>
 <br />
 <body>
     <br />
@@ -14,7 +24,7 @@
                     <p>
                         <a asp-action="Crear" class="btn btn-primary">Crear</a>
                     </p>
-                    <table class="table">
+                    <table id="example" class="table">
                         <thead>
                             <tr>
                                 <th>
@@ -35,39 +45,48 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.estado)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.horarios)
+                                </th>
                                 <th> Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.idUnidad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ruta)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.monto)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.placa)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.asientos)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.estado)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idUnidad)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ruta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.monto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.placa)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.asientos)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.estado)
+                                    </td>
+                                    <td>
+                                        @foreach (var item2 in item.horarios)
+                                        {@Html.DisplayFor(modelItem => item2) <br>
+                                    }
 
-                                <td>
-                                    @Html.ActionLink("Editar", "Update", new { id = item.idUnidad }) |
-                                    @Html.ActionLink("Detalles", "GetUnidad", new { id = item.idUnidad }) |
-                                    @Html.ActionLink("Borrar", "Borrar", new { id = item.idUnidad })
+                                    </td>
 
-                                </td>
-                            </tr>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Update", new { id = item.idUnidad }) |
+                                        @Html.ActionLink("Detalles", "GetUnidad", new { id = item.idUnidad }) |
+                                        @Html.ActionLink("Borrar", "Borrar", new { id = item.idUnidad })
+
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -76,3 +95,15 @@
         </div>
     </div>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });
+</script>
+
+<script>

@@ -57,12 +57,18 @@ namespace MovilidadInteligenteUI.Controllers
                     {
                         foreach (var LoginUser in UsuariosList)
                         {
-                            if (LoginUser.correo == login.Correo && LoginUser.clave == login.Clave)
+                            if (LoginUser.correo == login.Correo && LoginUser.clave == login.Clave && LoginUser.rol == "Administrador")
                             {
+                                return RedirectToAction("Usuarios", "Usuario");
 
-                                return RedirectToAction("Index", "Home");
                             }
 
+
+                            if (LoginUser.correo == login.Correo && LoginUser.clave == login.Clave && LoginUser.rol == "Cliente")
+                            {
+                                return RedirectToAction("Perfil", "Usuario", new { id = LoginUser.idUsuario });
+
+                            }
                         }
                         return View(login);
                     }
@@ -131,6 +137,11 @@ namespace MovilidadInteligenteUI.Controllers
 
                 throw;
             }
+        }
+
+        public ActionResult IfCliente()
+        {
+            return RedirectToAction("Perfil", "Usuario");
         }
 
         public ViewResult Registrar() => View();

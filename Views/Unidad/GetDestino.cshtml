@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MovilidadInteligenteUI.Models.Unidad>
+
+@{
+    ViewData["Title"] = "Agendar Viaje";
+}
+
+<br />
+<body>
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h4>Destinos Disponibles</h4>
+                <hr />
+
+
+                <table id="example" class="table">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.ruta)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.horarios)
+                            </th>
+
+                            <th> Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ruta)
+                                </td>
+                                <td>
+                                    @foreach (var item2 in item.horarios)
+                                    {@Html.DisplayFor(modelItem => item2) <br>
+                                }
+
+
+                                    @*<div class="form-group">
+                                @Html.LabelFor(modelitem => item.horarios, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(modelitem => item.horarios, (IEnumerable<SelectListItem>)ViewBag.ddlFechas, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(modelitem => item.horarios, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Elegir", "AgendarViaje", new { id = item.idUnidad })
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div>
+                    <a class="btn btn-primary" @Html.ActionLink("Regresar", "Perfil", "Usuario")</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
