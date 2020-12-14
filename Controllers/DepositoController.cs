@@ -130,5 +130,31 @@ namespace MovilidadInteligenteUI.Controllers
 
             return RedirectToAction("Depositos");
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateClienteSaldo(string id, int Deposito)
+        {
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                    usuario.saldo = +Deposito;
+
+                }
+
+                StringContent data = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
+                {
+
+                    ViewBag.Result = "Usuario Actualizado";
+                }
+            }
+            return View(usuario);
+        }
     }
 }
