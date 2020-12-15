@@ -1,0 +1,54 @@
+﻿@model MovilidadInteligenteUI.Models.Deposito
+@{
+    ViewData["Title"] = "Update";
+}
+<body>
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1>Actualizar</h1>
+
+                <h4>Deposito</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="idDeposito" class="control-label"></label>
+                                <input asp-for="idDeposito" class="form-control" disabled="disabled" />
+                                <span asp-validation-for="idDeposito" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="idUsuario" class="control-label"></label>
+                                <input asp-for="idUsuario" class="form-control" disabled="disabled" />
+                                <span asp-validation-for="idUsuario" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="monto" class="control-label"></label>
+                                <input asp-for="monto" class="form-control" disabled="disabled" />
+                                <span asp-validation-for="monto" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="fechaDeposito" class="control-label"></label>
+                                <input asp-for="fechaDeposito" class="form-control" />
+                                <span asp-validation-for="fechaDeposito" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="estado" disabled="disabled" /> @Html.DisplayNameFor(model => model.estado)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Confirmar Saldo" class="btn btn-primary" />
+                                <a asp-action="Depositos" class="btn btn-primary">Regresar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
