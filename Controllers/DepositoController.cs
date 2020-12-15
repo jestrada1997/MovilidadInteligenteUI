@@ -67,6 +67,9 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             }
+
+            await this.UpdateClienteSaldo(UsuarioController.UserGlobal,Deposito.monto);
+
             return RedirectToAction("Depositos", "Deposito", null);
         }
 
@@ -134,6 +137,31 @@ namespace MovilidadInteligenteUI.Controllers
             }
 
             return RedirectToAction("Depositos");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateClienteSaldo(string id, int Pago)
+        {
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                    usuario.saldo = +Pago;
+
+                }
+
+                StringContent data = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PutAsync("https://localhost:44354/api/Usuario", data))
+                {
+
+                    ViewBag.Result = "Usuario Actualizado";
+                }
+            }
+            return View(usuario);
         }
     }
 }

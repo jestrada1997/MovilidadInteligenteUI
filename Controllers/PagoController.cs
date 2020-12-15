@@ -51,6 +51,7 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             }
+            await this.UpdateClienteSaldo(UsuarioController.UserGlobal, Pago.monto);
             return RedirectToAction("Pagos", "Pago", null);
         }
 
