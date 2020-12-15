@@ -23,8 +23,8 @@ namespace MovilidadInteligenteUI.Controllers
 
         public  IActionResult Index()
         {
-           
-            return View();
+
+            return RedirectToAction("login", "Login", null);
         }
 
         public IActionResult Privacidad()

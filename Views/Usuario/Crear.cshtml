@@ -13,87 +13,111 @@
             <h4> Crear Usuario</h4>
             <hr />
             <div class="form-vertical">
-                <div class="card-columns">
+                <div>
                     <div class="card-body form-vertical">
                         <form asp-action="Crear">
-                            <div class="form-group">
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="nombre" class="control-label"></label>
+                                    <input asp-for="nombre" class="form-control" />
+                                    <span asp-validation-for="nombre" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="apellido1" class="control-label"></label>
+                                    <input asp-for="apellido1" class="form-control" />
+                                    <span asp-validation-for="apellido1" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="apellido2" class="control-label"></label>
+                                    <input asp-for="apellido2" class="form-control" />
+                                    <span asp-validation-for="apellido2" class="text-danger"></span>
+                                </div>
+                            </div>
+                          
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="correo" class="control-label"></label>
+                                    <input asp-for="correo" class="form-control" />
+                                    <span asp-validation-for="correo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="clave" class="control-label"></label>
+                                    <input asp-for="clave" class="form-control" />
+                                    <span asp-validation-for="clave" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="telefono" class="control-label"></label>
+                                    <input asp-for="telefono" class="form-control" />
+                                    <span asp-validation-for="telefono" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="saldo" class="control-label"></label>
+                                    <input asp-for="saldo" class="form-control" />
+                                    <span asp-validation-for="saldo" class="text-danger"></span>
+                                </div>
+                            </div>
 
-                                <label asp-for="nombre" class="control-label"></label>
-                                <input asp-for="nombre" class="form-control" />
-                                <span asp-validation-for="nombre" class="text-danger"></span>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                  
+                                    <label asp-for="fechaCreacion" class="control-label" ></label>
+                                    <input asp-for="fechaCreacion" class="form-control" disabled="disabled" />
+                                    <span asp-validation-for="fechaCreacion" class="text-danger"></span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="apellido1" class="control-label"></label>
-                                <input asp-for="apellido1" class="form-control" />
-                                <span asp-validation-for="apellido1" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="apellido2" class="control-label"></label>
-                                <input asp-for="apellido2" class="form-control" />
-                                <span asp-validation-for="apellido2" class="text-danger"></span>
-                            </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
-                                <br />
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <br />
+                                    <label asp-for="rol" class="control-label"></label>
+                                    <select asp-for="rol" class="form-control" name="rol">
 
-                                <label asp-for="correo" class="control-label"></label>
-                                <input asp-for="correo" class="form-control" />
-                                <span asp-validation-for="correo" class="text-danger"></span>
+                                        <option>Administrador</option>
+                                        <option>Cliente</option>
+                                    </select>
+                                    <span asp-validation-for="rol" class="text-danger"></span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="clave" class="control-label"></label>
-                                <input asp-for="clave" class="form-control" />
-                                <span asp-validation-for="clave" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="telefono" class="control-label"></label>
-                                <input asp-for="telefono" class="form-control" />
-                                <span asp-validation-for="telefono" class="text-danger"></span>
-                            </div>
-                            <br />
-                            <br />
-                            <div class="form-group">
-                                <br />
-                                <label asp-for="saldo" class="control-label"></label>
-                                <input asp-for="saldo" class="form-control" />
-                                <span asp-validation-for="saldo" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="fechaCreacion" class="control-label"></label>
-                                <input asp-for="fechaCreacion" class="form-control" />
-                                <span asp-validation-for="fechaCreacion" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="rol" class="control-label"></label>
-                                <select asp-for="rol" class="form-control" name="rol">
+                            <div class="card-columns">
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
+                                    </label>
+                                </div>
+                                </div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                @Html.HiddenFor(model => model.idUsuario)
 
-                                    <option>Administrador</option>
-                                    <option>Cliente</option>
-                                </select>
-
-                                @*<label asp-for="rol" class="control-label"></label>
-                                    <input asp-for="rol" class="form-control" />*@
-                                <span asp-validation-for="rol" class="text-danger"></span>
-                            </div>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
-                                </label>
-                            </div>
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            @Html.HiddenFor(model => model.idUsuario)
-
+                                <div class="form-group col-md-offset-2 col-md-10">
+                                    <br />
+                                    <br />
+                                    <input type="submit" value="Crear" class="btn btn-primary" />
+                                    <a asp-action="Usuarios" class="btn btn-primary">Regresar</a>
+                                </div>
                         </form>
 
                     </div>
 
                 </div>
             </div>
-            <div class="form-group col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-                <a asp-action="Usuarios" class="btn btn-primary">Regresar</a>
-            </div>
+          
         </div>
     </body>
     @section Scripts {

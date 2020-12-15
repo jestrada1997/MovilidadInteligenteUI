@@ -2,100 +2,99 @@
 
 @{
     ViewData["Title"] = "Crear Usuario";
+    Layout = "~/Views/Shared/_LoginPartial.cshtml";
 }
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-    <body>
+<body>
+    <div class="container">
         <div class="card">
             <h4> Crear Usuario</h4>
             <hr />
             <div class="form-vertical">
-                <div class="card-columns">
-                    <div class="card-body form-vertical">
-                        <form asp-action="Crear">
-                            <div class="form-group">
+                
+                    <div class="card-body">
+                        <form asp-action="Registrar">
+                            <div class="card-columns">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                @Html.HiddenFor(model => model.idUsuario)
+                                <div class="form-group">
 
-                                <label asp-for="nombre" class="control-label"></label>
-                                <input asp-for="nombre" class="form-control" />
-                                <span asp-validation-for="nombre" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="apellido1" class="control-label"></label>
-                                <input asp-for="apellido1" class="form-control" />
-                                <span asp-validation-for="apellido1" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="apellido2" class="control-label"></label>
-                                <input asp-for="apellido2" class="form-control" />
-                                <span asp-validation-for="apellido2" class="text-danger"></span>
+                                    <label asp-for="nombre" class="control-label"></label>
+                                    <input asp-for="nombre" class="form-control" />
+                                    <span asp-validation-for="nombre" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="apellido1" class="control-label"></label>
+                                    <input asp-for="apellido1" class="form-control" />
+                                    <span asp-validation-for="apellido1" class="text-danger"></span>
+                                </div>
                             </div>
                             <br />
                             <br />
-                            <div class="form-group">
-                                <br />
-
-                                <label asp-for="correo" class="control-label"></label>
-                                <input asp-for="correo" class="form-control" />
-                                <span asp-validation-for="correo" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="clave" class="control-label"></label>
-                                <input asp-for="clave" class="form-control" />
-                                <span asp-validation-for="clave" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="telefono" class="control-label"></label>
-                                <input asp-for="telefono" class="form-control" />
-                                <span asp-validation-for="telefono" class="text-danger"></span>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <label asp-for="apellido2" class="control-label"></label>
+                                    <input asp-for="apellido2" class="form-control" />
+                                    <span asp-validation-for="apellido2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="correo" class="control-label"></label>
+                                    <input asp-for="correo" class="form-control" />
+                                    <span asp-validation-for="correo" class="text-danger"></span>
+                                </div>
                             </div>
                             <br />
                             <br />
-                            <div class="form-group">
-                                <br />
-                                <label asp-for="saldo" class="control-label"></label>
-                                <input asp-for="saldo" class="form-control" />
-                                <span asp-validation-for="saldo" class="text-danger"></span>
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <label asp-for="clave" class="control-label"></label>
+                                    <input asp-for="clave" class="form-control" />
+                                    <span asp-validation-for="clave" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="telefono" class="control-label"></label>
+                                    <input asp-for="telefono" class="form-control" />
+                                    <span asp-validation-for="telefono" class="text-danger"></span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="fechaCreacion" class="control-label"></label>
-                                <input asp-for="fechaCreacion" class="form-control" />
-                                <span asp-validation-for="fechaCreacion" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="rol" class="control-label"></label>
-                                <select asp-for="rol" class="form-control" name="rol">
 
-                                    <option>Administrador</option>
-                                    <option>Cliente</option>
-                                </select>
-
-                                @*<label asp-for="rol" class="control-label"></label>
-                                    <input asp-for="rol" class="form-control" />*@
-                                <span asp-validation-for="rol" class="text-danger"></span>
-                            </div>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
-                                </label>
-                            </div>
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            @Html.HiddenFor(model => model.idUsuario)
-
+                            @Html.HiddenFor(model => model.saldo)
+                          
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @Html.HiddenFor(model => model.saldoPend)
+                          
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @Html.HiddenFor(model => model.fechaCreacion)
+                          
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @Html.HiddenFor(model => model.rol)
+                            
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @Html.HiddenFor(model => model.estado)
+                           
+                            <br />
+                            <br />
+                            <div class="card-columns">
+                                <div class="form-group">
+                                    <input type="submit" value="Crear" class="btn btn-primary" />
+                                    <a asp-action="Login" class="btn btn-primary">Regresar</a>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
 
                 </div>
             </div>
-            <div class="form-group col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-                <a asp-action="Usuarios" class="btn btn-primary">Regresar</a>
-            </div>
+
         </div>
-    </body>
+  
+</body>
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }

@@ -67,7 +67,10 @@ namespace MovilidadInteligenteUI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Crear(Usuario usuario)
-        {
+        {         
+            usuario.saldoPend = 0;
+            usuario.idUsuario = null;
+            usuario.fechaCreacion = DateTime.Now;
             Usuario receivedUsuario = new Usuario();
             using (var httpClient = new HttpClient())
             {
@@ -238,7 +241,17 @@ namespace MovilidadInteligenteUI.Controllers
             }
             return View(usuario);
         }
-        
+
+
+
+        public async Task<IActionResult> Salir()
+        {
+           UserGlobal=null;
+            UserRol=null;
+
+            return RedirectToAction("login", "Login", null);
+        }
+
     }
 }
 
