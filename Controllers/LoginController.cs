@@ -139,18 +139,16 @@ namespace MovilidadInteligenteUI.Controllers
             }
         }
 
-        public ActionResult IfCliente()
-        {
-            return RedirectToAction("Perfil", "Usuario");
-        }
-
         public ViewResult Registrar() => View();
 
         [HttpPost]
         public async Task<IActionResult> Registrar(Usuario usuario)
         {
-            usuario.saldo = 0;
-            usuario.idUsuario = null;
+            //usuario.saldo = 0;
+            //usuario.idUsuario = null;
+            //usuario.rol = "Cliente";
+            //usuario.estado = true;
+            //usuario.fechaCreacion = DateTime.Now;
             Usuario receivedUsuario = new Usuario();
             using (var httpClient = new HttpClient())
             {
@@ -161,7 +159,7 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             }
-            return RedirectToAction("login", "Login");
+            return RedirectToAction("login", "Login",null);
         }
     }
 }
