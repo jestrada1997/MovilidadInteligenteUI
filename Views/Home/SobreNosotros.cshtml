@@ -1,7 +1,15 @@
 ﻿
 @{
     ViewData["Title"] = "Sobre Nosotros";
-    Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol == "Cliente")
+    {
+        Layout = "~/Views/Shared/_LoginPartialCliente.cshtml";
+    }
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol == null)
+    {
+        Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    }
+   
 }
 
 <br />
@@ -14,13 +22,13 @@
 
                 
                     <p>
-                        Nuestro sistema es una aplicación que controla el saldo de pago del usuario, reservación de ruta y horas, debe mostrar la unidad en que se viaja.
+                        Nuestro sistema es una aplicación que controla el saldo de pago del usuario, reservación de rutas, debe mostrar la unidad en que se viaja.
                         <br />
-                        La aplicación gestiona las unidades, usuarios y rutas por parte del administrador.
+                        La aplicación gestiona las unidades, usuarios y depositos por parte del administrador.
                         <br />
-                        Se utilizo la base de datos MONGODB para almacenar y gestionar las peticiones de la aplicación.
+                        Se utilizó la base de datos MONGODB para almacenar y gestionar las peticiones de la aplicación.
                         <br />
-                        La aplicación consta de varios módulos interconectados que compondrán todo el sistema para poder hacer consultas, calendarios, gestionar los diferentes servicios.
+                        La aplicación consta de varios módulos interconectados que compondrán todo el sistema para poder hacer consultas y gestionar los diferentes servicios disponibles en la aplicación.
                     </p>
                
 

@@ -135,43 +135,6 @@ namespace MovilidadInteligenteUI.Controllers
         }
 
 
-
-
-
-
-        public async Task<IActionResult> AgendarViaje(string id)
-        {
-            Unidad Unidad = new Unidad();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Unidad" + "/" + id))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-
-                    Unidad = JsonConvert.DeserializeObject<Unidad>(apiResponse);
-                }
-            }
-            return View(Unidad);
-        }
-
-        //public async Task<IActionResult> AgendarViaje(Unidad Unidad)
-        //{
-        //    Unidad receivedUnidad = new Unidad();
-        //    using (var httpClient = new HttpClient())
-        //    {
-
-        //        StringContent data = new StringContent(JsonConvert.SerializeObject(Unidad), Encoding.UTF8, "application/json");
-        //        using (var response = await httpClient.PutAsync("https://localhost:44354/api/Unidad", data))
-        //        {
-        //            ViewBag.Result = "Unidad Actualizada";
-        //        }
-
-
-        //    }
-        //    return View(Unidad);
-        //}
-
-
         public async Task<IActionResult> GetDestino()
         {
            
@@ -186,21 +149,8 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             } 
-            //CargarListas(UnidadesList);
+          
             return View(UnidadesList);
-        }
-
-
-        Unidad cRoles = new Unidad();
-        private void CargarListas(Unidad uni)
-        {
-            //cargado en el View
-            List<DateTime> horarios = uni.horarios;
-            //if (fechas == null)
-            //{
-            //     ViewBag("No hay horarios disponibles");
-            //}
-            ViewBag.ddlFechas = new List<DateTime>(horarios);
         }
 
 

@@ -23,16 +23,31 @@ namespace MovilidadInteligenteUI.Controllers
 
         public  IActionResult Index()
         {
-
+            if (UsuarioController.UserRol == "Cliente")
+            {
+                return RedirectToAction("Perfil", "Usuario");
+            }
+            if (UsuarioController.UserRol == "Administrador")
+            {
+                return RedirectToAction("Usuarios", "Usuario");
+            }
             return RedirectToAction("login", "Login", null);
         }
 
         public IActionResult Privacidad()
         {
+            if (UsuarioController.UserRol == "Administrador")
+            {
+                return RedirectToAction("Usuarios", "Usuario");
+            }
             return View();
         }
         public IActionResult SobreNosotros()
         {
+            if (UsuarioController.UserRol == "Administrador")
+            {
+                return RedirectToAction("Usuarios", "Usuario");
+            }
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -179,7 +179,6 @@ namespace MovilidadInteligenteUI.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
-                    //usuario.saldo = +Pago;
 
                 }
             int pagocurrent = usuario.saldoPend;

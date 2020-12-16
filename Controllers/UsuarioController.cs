@@ -171,23 +171,6 @@ namespace MovilidadInteligenteUI.Controllers
             
         }
 
-        
-        //public async Task<IActionResult> Perfil()
-        //{
-        //    Usuario usuario = new Usuario();
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + UserGlobal))
-        //        {
-        //            string apiResponse = await response.Content.ReadAsStringAsync();
-
-        //            usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
-        //        }
-        //    }
-        //    return View(usuario);
-
-        //}
-
 
         //************************************Cliente****************************************************
 

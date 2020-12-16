@@ -33,15 +33,27 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             }
+
             return View(PagosList);
         }
 
-        public ViewResult Crear() => View();
+        public  IActionResult CrearPago(string id, int monto) {
+            Pago Pago = new Pago();
+            Pago.idUsuario = UsuarioController.UserGlobal;
+            Pago.idUnidad = id;
+            Pago.monto = monto;
+            Pago.fechaPago = DateTime.Now;
+            Pago.estado = true;
+
+            Crear(Pago);
+            return RedirectToAction("Perfil", "Usuario", null);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Crear(Pago Pago)
         {
-            Pago receivedLinea = new Pago();
+            //Pago Pago = new Pago();
+            Pago.idUsuario = UsuarioController.UserGlobal;
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(Pago), Encoding.UTF8, "application/json");
@@ -52,7 +64,7 @@ namespace MovilidadInteligenteUI.Controllers
                 }
             }
             await this.UpdateClienteSaldo(UsuarioController.UserGlobal, Pago.monto);
-            return RedirectToAction("Pagos", "Pago", null);
+            return RedirectToAction("Perfil", "Usuario", null);
         }
 
         //[HttpPost]
@@ -169,7 +181,7 @@ namespace MovilidadInteligenteUI.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
-                    usuario.saldo = -Pago;
+                    usuario.saldo = usuario.saldo - Pago;
 
                 }
 

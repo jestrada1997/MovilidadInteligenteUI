@@ -14,56 +14,44 @@
                 <h4>Destinos Disponibles</h4>
                 <hr />
 
-
-                <table id="example" class="table">
-                    <thead>
-                        <tr>
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.ruta)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.horarios)
-                            </th>
-
-                            <th> Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+               
+                    <table id="example" class="table">
+                        <thead>
                             <tr>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ruta)
-                                </td>
-                                <td>
-                                    @foreach (var item2 in item.horarios)
-                                    {@Html.DisplayFor(modelItem => item2) <br>
-                                }
-
-
-                                    @*<div class="form-group">
-                                @Html.LabelFor(modelitem => item.horarios, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownListFor(modelitem => item.horarios, (IEnumerable<SelectListItem>)ViewBag.ddlFechas, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(modelitem => item.horarios, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
-
-                                </td>
-
-                                <td>
-                                    @Html.ActionLink("Elegir", "AgendarViaje", new { id = item.idUnidad })
-
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ruta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.monto)
+                                </th>
+                                <th> Acción</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-                <div>
-                    <a class="btn btn-primary" @Html.ActionLink("Regresar", "Perfil", "Usuario")</a>
-                </div>
+                        </thead>
+                        <tbody>
+                            <form method="post">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ruta)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.monto)
+                                        </td>
+                                        <td>
+                                        @Html.ActionLink("Elegir", "CrearPago", "Pago", new { id = item.idUnidad, monto = item.monto })
+                                        </td>
+                                    </tr>
+                                }
+                            </form>
+                        </tbody>
+                    </table>
+                
+                    <div>
+                        <a class="btn btn-primary" @Html.ActionLink("Regresar", "Perfil", "Usuario")</a>
+                    </div>
             </div>
         </div>
     </div>

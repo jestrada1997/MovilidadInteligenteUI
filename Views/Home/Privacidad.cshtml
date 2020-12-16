@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
-    Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol =="Cliente") {
+        Layout = "~/Views/Shared/_LoginPartialCliente.cshtml";
+    }
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol == null)
+    {
+        Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    }
+
 }
 
 <br />
