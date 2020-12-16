@@ -53,11 +53,11 @@ namespace MovilidadInteligenteUI.Controllers
           
             if (monto>UsuarioController.cartera)
             {
-                ViewBag.Message= "No tiene suficientes fondos";
+                ViewData["usuario"] = "No tiene suficientes fondos";
                 return RedirectToAction("Crear", "Deposito", null);
             }
 
-            ViewBag.Message = "Agendado";
+            ViewData["usuario"] = "Agendado";
             return RedirectToAction("Perfil", "Usuario", null);
         }
 
