@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MovilidadInteligenteUI.Models.Pago>
+
+@{
+    ViewData["Title"] = "HistorialPagos";
+}
+
+<h1>HistorialPagos</h1>
+<body>
+    <br />
+    <div class="container">
+        <div class="row gutters-sm">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.idPago)
+                                </th>
+                                <th>
+                                    <p>Nombre Usuario</p>
+                                </th>
+                                <th>
+                                    <p>Ruta</p>
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.monto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fechaPago)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estado)
+                                </th>
+                                <th></th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                if (@ViewData["idUsuario"].ToString() == item.idUsuario)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.idPago)
+                                        </td>
+                                        <td>
+                                            @ViewData["NombreUsuario"]
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.idUnidad)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.monto)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fechaPago)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.estado)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

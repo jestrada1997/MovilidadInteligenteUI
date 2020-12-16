@@ -22,6 +22,8 @@ namespace MovilidadInteligenteUI.Controllers
             {
                 return RedirectToAction("Perfil", "Usuario");
             }
+
+
             List<Pago> PagosList = new List<Pago>();
             using (var httpClient = new HttpClient())
             {
@@ -195,5 +197,30 @@ namespace MovilidadInteligenteUI.Controllers
             return View(usuario);
         }
 
+        public async Task<IActionResult> HistorialPagos(string id)
+        {
+            List<Pago> PagosList = new List<Pago>();
+            ViewData["idUsuario"]= id;
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Pago"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    
+                    PagosList = BsonSerializer.Deserialize<List<Pago>>(apiResponse);
+
+                }
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                }
+            }
+            ViewData["NombreUsuario"] = usuario.nombre;
+            ViewData["Ruta"] = usuario.nombre;
+            return View(PagosList);
+        }
     }
 }
