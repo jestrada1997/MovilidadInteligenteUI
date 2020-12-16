@@ -19,6 +19,7 @@ namespace MovilidadInteligenteUI.Controllers
 
         public static String UserGlobal;
         public static String UserRol;
+        public static int cartera;
         public async Task<IActionResult> Usuarios()
         {
             if (UserRol== "Cliente") {
@@ -167,6 +168,7 @@ namespace MovilidadInteligenteUI.Controllers
                 }
             }
             UserRol = usuario.rol;
+            cartera = usuario.saldo;
             return View(usuario);
             
         }
@@ -231,7 +233,7 @@ namespace MovilidadInteligenteUI.Controllers
         {
            UserGlobal=null;
             UserRol=null;
-
+            cartera = 0;
             return RedirectToAction("login", "Login", null);
         }
 

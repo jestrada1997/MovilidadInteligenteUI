@@ -45,14 +45,24 @@ namespace MovilidadInteligenteUI.Controllers
             Pago.fechaPago = DateTime.Now;
             Pago.estado = true;
 
+           
             Crear(Pago);
+            
+          
+            if (monto>UsuarioController.cartera)
+            {
+                ViewBag.Message= "No tiene suficientes fondos";
+                return RedirectToAction("Crear", "Deposito", null);
+            }
+
+            ViewBag.Message = "Agendado";
             return RedirectToAction("Perfil", "Usuario", null);
         }
 
         [HttpPost]
         public async Task<IActionResult> Crear(Pago Pago)
         {
-            //Pago Pago = new Pago();
+            
             Pago.idUsuario = UsuarioController.UserGlobal;
             using (var httpClient = new HttpClient())
             {
@@ -64,7 +74,10 @@ namespace MovilidadInteligenteUI.Controllers
                 }
             }
             await this.UpdateClienteSaldo(UsuarioController.UserGlobal, Pago.monto);
+
+
             return RedirectToAction("Perfil", "Usuario", null);
+
         }
 
         //[HttpPost]
@@ -181,7 +194,15 @@ namespace MovilidadInteligenteUI.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
-                    usuario.saldo = usuario.saldo - Pago;
+                    if (Pago>usuario.saldo) {
+                        return RedirectToAction("Crear", "Deposito", null);
+                    }
+                    else { 
+                        usuario.saldo = usuario.saldo - Pago;
+                        BitacoraController bb = new BitacoraController();
+                        bb.InsertarBitacoraPago(id);
+                    }
+                   
 
                 }
 

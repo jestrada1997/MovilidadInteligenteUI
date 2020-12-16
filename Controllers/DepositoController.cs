@@ -75,7 +75,9 @@ namespace MovilidadInteligenteUI.Controllers
             }
 
             await this.UpdateClienteSaldo(UsuarioController.UserGlobal,Deposito.monto);
-
+            
+            BitacoraController bb= new BitacoraController();
+            bb.InsertarBitacora(Deposito.idUsuario);
             return RedirectToAction("Depositos", "Deposito", null);
         }
 
