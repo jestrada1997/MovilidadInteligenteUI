@@ -19,6 +19,7 @@ namespace MovilidadInteligenteUI.Controllers
 
         public static String UserGlobal;
         public static String UserRol;
+        public static int cartera;
         public async Task<IActionResult> Usuarios()
         {
             if (UserRol== "Cliente") {
@@ -67,7 +68,10 @@ namespace MovilidadInteligenteUI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Crear(Usuario usuario)
-        {
+        {         
+            usuario.saldoPend = 0;
+            usuario.idUsuario = null;
+            usuario.fechaCreacion = DateTime.Now;
             Usuario receivedUsuario = new Usuario();
             using (var httpClient = new HttpClient())
             {
@@ -164,26 +168,10 @@ namespace MovilidadInteligenteUI.Controllers
                 }
             }
             UserRol = usuario.rol;
+            cartera = usuario.saldo;
             return View(usuario);
             
         }
-
-        
-        //public async Task<IActionResult> Perfil()
-        //{
-        //    Usuario usuario = new Usuario();
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + UserGlobal))
-        //        {
-        //            string apiResponse = await response.Content.ReadAsStringAsync();
-
-        //            usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
-        //        }
-        //    }
-        //    return View(usuario);
-
-        //}
 
 
         //************************************Cliente****************************************************
@@ -238,7 +226,17 @@ namespace MovilidadInteligenteUI.Controllers
             }
             return View(usuario);
         }
-        
+
+
+
+        public async Task<IActionResult> Salir()
+        {
+           UserGlobal=null;
+            UserRol=null;
+            cartera = 0;
+            return RedirectToAction("login", "Login", null);
+        }
+
     }
 }
 

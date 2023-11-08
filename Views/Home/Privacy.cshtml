@@ -1,5 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol == "Cliente")
+    {
+        Layout = "~/Views/Shared/_LoginPartialCliente.cshtml";
+    }
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol == null)
+    {
+        Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    }
 }
 <h1>@ViewData["Politica de privacidad"]</h1>
 

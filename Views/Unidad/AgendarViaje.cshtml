@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Agendar Viaje";
+    Layout = "~/Views/Shared/_LoginPartialCliente.cshtml";
 }
 
 <br />
@@ -24,29 +25,12 @@
                                 <span asp-validation-for="monto" class="text-danger"></span>
                             </div>
 
-
-                            <label asp-for="horarios" class="control-label"></label>
-                            @*<select asp-for="horarios" class="form-control" name="rol">
-                                <option> @Html.DisplayFor(modelItem => modelItem.horarios)</option>
-                                </select>*@
-                        <select asp-for="horarios" class="form-control">
-                            @foreach (var item in Model.horarios)
-                            {
-                                <option> @item.ToLocalTime()  <br /></option>
-                               
-                            }
-
-                        </select>
-
                         <div class="form-group">
                             <br />
                             <br />
                             <input type="submit" value="Crear" class="btn btn-primary" />
                             <a asp-action="GetDestino" class="btn btn-primary">Regresar</a>
-                           
-                            @*Falta crear metodo en pago
-                            @Html.ActionLink("Continuar", "CrearCliente", "Pago", new { id = @Model.idUnidad, precio = @Model.monto })*@
-
+                               
                         </div>
                         </form>
                         </div>

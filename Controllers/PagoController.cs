@@ -22,6 +22,8 @@ namespace MovilidadInteligenteUI.Controllers
             {
                 return RedirectToAction("Perfil", "Usuario");
             }
+
+
             List<Pago> PagosList = new List<Pago>();
             using (var httpClient = new HttpClient())
             {
@@ -33,15 +35,37 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             }
+
             return View(PagosList);
         }
 
-        public ViewResult Crear() => View();
+        public  IActionResult CrearPago(string id, int monto) {
+            Pago Pago = new Pago();
+            Pago.idUsuario = UsuarioController.UserGlobal;
+            Pago.idUnidad = id;
+            Pago.monto = monto;
+            Pago.fechaPago = DateTime.Now;
+            Pago.estado = true;
+
+           
+            Crear(Pago);
+            
+          
+            if (monto>UsuarioController.cartera)
+            {
+                ViewData["usuario"] = "No tiene suficientes fondos";
+                return RedirectToAction("Crear", "Deposito", null);
+            }
+
+            ViewData["usuario"] = "Agendado";
+            return RedirectToAction("Perfil", "Usuario", null);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Crear(Pago Pago)
         {
-            Pago receivedLinea = new Pago();
+            
+            Pago.idUsuario = UsuarioController.UserGlobal;
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(Pago), Encoding.UTF8, "application/json");
@@ -51,7 +75,11 @@ namespace MovilidadInteligenteUI.Controllers
 
                 }
             }
-            return RedirectToAction("Pagos", "Pago", null);
+            await this.UpdateClienteSaldo(UsuarioController.UserGlobal, Pago.monto);
+
+
+            return RedirectToAction("Perfil", "Usuario", null);
+
         }
 
         //[HttpPost]
@@ -168,7 +196,15 @@ namespace MovilidadInteligenteUI.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
-                    usuario.saldo = -Pago;
+                    if (Pago>usuario.saldo) {
+                        return RedirectToAction("Crear", "Deposito", null);
+                    }
+                    else { 
+                        usuario.saldo = usuario.saldo - Pago;
+                        BitacoraController bb = new BitacoraController();
+                        bb.InsertarBitacoraPago(id);
+                    }
+                   
 
                 }
 
@@ -182,5 +218,30 @@ namespace MovilidadInteligenteUI.Controllers
             return View(usuario);
         }
 
+        public async Task<IActionResult> HistorialPagos(string id)
+        {
+            List<Pago> PagosList = new List<Pago>();
+            ViewData["idUsuario"]= id;
+            Usuario usuario = new Usuario();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Pago"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    
+                    PagosList = BsonSerializer.Deserialize<List<Pago>>(apiResponse);
+
+                }
+                using (var response = await httpClient.GetAsync("https://localhost:44354/api/Usuario" + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+
+                    usuario = JsonConvert.DeserializeObject<Usuario>(apiResponse);
+                }
+            }
+            ViewData["NombreUsuario"] = usuario.nombre;
+            ViewData["Ruta"] = usuario.nombre;
+            return View(PagosList);
+        }
     }
 }

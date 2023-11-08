@@ -1,5 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Contáctenos";
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol =="Cliente") {
+        Layout = "~/Views/Shared/_LoginPartialCliente.cshtml";
+    }
+    if (MovilidadInteligenteUI.Controllers.UsuarioController.UserRol == null)
+    {
+        Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    }
+
 }
 
 <br />
@@ -11,10 +19,14 @@
                         <h1>@ViewData["Title"]</h1>
 
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <br />
+                            Central telefónica
+                            <br />
+                            (506) 2206-8600
+                            <br />
+                            Horario Oficinas Centrales:
+                            <br />
+                            De lunes a viernes de 8 de la mañana a 4 de la tarde, jornada continua.
                         </p>
                     </div>
                 </div>
